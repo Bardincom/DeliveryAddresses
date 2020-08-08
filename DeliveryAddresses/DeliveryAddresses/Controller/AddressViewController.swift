@@ -24,7 +24,6 @@ class AddressViewController: UIViewController {
         addressTableView.backgroundColor = .white
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-//        addressTableView.register(AddressTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
     }
 
 }
@@ -45,7 +44,7 @@ extension AddressViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "АДРЕС ДОСТАВКИ \(section + 1)"
+        Name.tableHader + "\(section + 1)"
     }
 
 }

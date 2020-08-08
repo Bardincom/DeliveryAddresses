@@ -16,12 +16,13 @@ class EditingAddressViewController: UIViewController {
         view.imageView.tintColor = Color.yellow
         return view
     }()
+    
     let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .darkGray
-        label.text = "РЕДАКТИРОВАНИЕ АДРЕСА "
+        label.text = Name.heading
         return label
     }()
 
@@ -37,29 +38,29 @@ class EditingAddressViewController: UIViewController {
     }()
 
     let countryTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: "Страна")
+        let textField = UITextField.createTextFielf(withName: Name.country)
         return textField
     }()
 
     let indexTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: "Индекс")
+        let textField = UITextField.createTextFielf(withName: Name.index)
         return textField
     }()
 
     let cityTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: "Город")
+        let textField = UITextField.createTextFielf(withName: Name.city)
         return textField
     }()
 
     let addressTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: "Адрес")
+        let textField = UITextField.createTextFielf(withName: Name.address)
         return textField
     }()
 
     let saveBotton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(saveAddress), for: .touchUpInside)
-        button.setTitle("Сохранить изменения", for: .normal)
+        button.setTitle(Name.buttonSave, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.backgroundColor = Color.yellow?.cgColor
         button.layer.cornerRadius = 5
@@ -72,7 +73,6 @@ class EditingAddressViewController: UIViewController {
         view.backgroundColor = .white
         setupLayuot()
     }
-
 }
 
 private extension EditingAddressViewController {

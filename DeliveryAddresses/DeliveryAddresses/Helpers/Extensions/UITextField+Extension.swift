@@ -15,6 +15,7 @@ extension UITextField {
             textField.placeholder = name
             textField.borderStyle = .roundedRect
             textField.layer.masksToBounds = true
+            textField.autocorrectionType = .no
             textField.translatesAutoresizingMaskIntoConstraints = false
             return textField
         }()

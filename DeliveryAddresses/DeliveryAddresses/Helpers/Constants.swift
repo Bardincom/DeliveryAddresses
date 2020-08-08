@@ -17,3 +17,13 @@ enum Color {
     static let yellow = UIColor(named: "yellowColor")
 }
 
+enum Name {
+    static let country = "Страна"
+    static let index = "Индекс"
+    static let city = "Город"
+    static let address = "Адрес"
+    static let buttonSave = "Сохранить изменения"
+    static let heading = "РЕДАКТИРОВАНИЕ АДРЕСА "
+    static let tableHader = "АДРЕС ДОСТАВКИ "
+}
+
