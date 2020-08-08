@@ -13,7 +13,7 @@ class AddressViewController: UIViewController {
     @IBOutlet private var addressTableView: UITableView! {
         willSet {
             newValue.register(nibCell: AddressTableViewCell.self)
-//            newValue.register(class: AdressTableViewHeaderView.self)
+            newValue.register(class: AdressTableViewHeaderView.self)
         }
     }
 
@@ -56,10 +56,9 @@ extension AddressViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = addressTableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? AdressTableViewHeaderView
+        let header = addressTableView.dequeue(reusable: AdressTableViewHeaderView.self)
         return header
     }
-
 }
 
 extension AddressViewController {
@@ -74,7 +73,7 @@ extension AddressViewController {
 
     @objc
     func addAddress() {
-        print("Тут будет пуш на новый экрна")
+        print("Тут будет пуш на новый экран")
     }
 
 
