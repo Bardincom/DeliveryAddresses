@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AdressTableViewHeaderView: UITableViewHeaderFooterView {
+final class AddressTableViewHeaderView: UITableViewHeaderFooterView {
     
     let separatorView: SeparatorView = {
         let view = SeparatorView()
@@ -18,20 +18,25 @@ class AdressTableViewHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
+        setupLayuot()
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+private extension AddressTableViewHeaderView {
+    func setupLayuot() {
         contentView.addSubview(separatorView)
-        
+
         NSLayoutConstraint.activate([
             separatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             separatorView.topAnchor.constraint(equalTo: contentView.topAnchor),
             separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }
 

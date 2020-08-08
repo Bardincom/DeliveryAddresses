@@ -13,7 +13,7 @@ class AddressViewController: UIViewController {
     @IBOutlet private var addressTableView: UITableView! {
         willSet {
             newValue.register(nibCell: AddressTableViewCell.self)
-            newValue.register(class: AdressTableViewHeaderView.self)
+            newValue.register(class: AddressTableViewHeaderView.self)
         }
     }
 
@@ -24,7 +24,7 @@ class AddressViewController: UIViewController {
         addressTableView.backgroundColor = .white
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        addressTableView.register(AdressTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
+//        addressTableView.register(AddressTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
     }
 
 }
@@ -56,7 +56,7 @@ extension AddressViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = addressTableView.dequeue(reusable: AdressTableViewHeaderView.self)
+        let header = addressTableView.dequeue(reusable: AddressTableViewHeaderView.self)
         return header
     }
 }
@@ -73,7 +73,8 @@ extension AddressViewController {
 
     @objc
     func addAddress() {
-        print("Тут будет пуш на новый экран")
+        let editingAddressViewController = EditingAddressViewController()
+        navigationController?.pushViewController(editingAddressViewController, animated: true)
     }
 
 
