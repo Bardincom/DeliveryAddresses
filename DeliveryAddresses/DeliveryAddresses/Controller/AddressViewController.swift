@@ -17,34 +17,33 @@ class AddressViewController: UIViewController {
         }
     }
 
+    var addresses = [Address]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupNavigationBar()
+        addresses = AddressStorage().getAddress()
         addressTableView.backgroundColor = .white
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
 }
 
 extension AddressViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        addresses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(reusable: AddressTableViewCell.self, for: indexPath)
-
+        let address = addresses[indexPath.section]
+        cell.setupAddress(address)
         return cell
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Name.tableHader + "\(section + 1)"
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {        return Name.tableHader + "\(section + 1)"
     }
 
 }
@@ -68,6 +67,8 @@ extension AddressViewController {
                                      action: #selector(addAddress))
         button.tintColor = Color.yellow
         navigationItem.rightBarButtonItems = .some([button])
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     @objc
@@ -75,6 +76,5 @@ extension AddressViewController {
         let editingAddressViewController = EditingAddressViewController()
         navigationController?.pushViewController(editingAddressViewController, animated: true)
     }
-
 
 }

@@ -10,15 +10,15 @@ import UIKit
 
 class AddressTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet private var countryLabel: UILabel!
+    @IBOutlet private var indexLabel: UILabel!
+    @IBOutlet private var cityLabel: UILabel!
+    @IBOutlet private var addressLabel: UILabel!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+    func setupAddress(_ address: Address) {
+        countryLabel.text = "\(address.country),"
+        indexLabel.text = "\(address.index),"
+        cityLabel.text = "г. \(address.city),"
+        addressLabel.text = address.address
+    }    
 }
