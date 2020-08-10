@@ -135,10 +135,12 @@ private extension EditingAddressViewController {
     @objc
     func saveAddress() {
         guard
-            let country = countryTextField.text,
-            let index = indexTextField.text,
-            let city = cityTextField.text,
-            let address = addressTextField.text else { return }
+            let country = countryTextField.text, !country.isEmpty,
+            let index = indexTextField.text, !index.isEmpty,
+            let city = cityTextField.text, !city.isEmpty,
+            let address = addressTextField.text, !address.isEmpty else {
+                alert()
+                return }
 
         let newAddress = Address(country: country, index: index, city: city, address: address)
 
@@ -155,5 +157,11 @@ private extension EditingAddressViewController {
         delegate.shouldAdd(address: newAddress)
 
         navigationController?.popViewController(animated: true)
+    }
+
+    func alert() {
+        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
