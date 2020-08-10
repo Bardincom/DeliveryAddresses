@@ -10,7 +10,7 @@ import Foundation
 
 struct Address {
     var country: String
-    var index: Int
+    var index: String
     var city: String
     var address: String
 }

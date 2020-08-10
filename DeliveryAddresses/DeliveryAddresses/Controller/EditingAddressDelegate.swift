@@ -8,16 +8,24 @@
 
 import UIKit
 
+protocol EditingAddressDelegate: class {
+    func shouldReplace(address: Address, withAddress newAddress: Address)
+    func shouldAdd(address: Address)
+}
+
 class EditingAddressViewController: UIViewController {
 
-    let separatorView: SeparatorView = {
+    weak var delegate: EditingAddressDelegate!
+    var selectedAddress: Address?
+
+    private let separatorView: SeparatorView = {
         let view = SeparatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView.tintColor = Color.yellow
         return view
     }()
     
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13)
@@ -26,7 +34,7 @@ class EditingAddressViewController: UIViewController {
         return label
     }()
 
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -37,27 +45,27 @@ class EditingAddressViewController: UIViewController {
         return stackView
     }()
 
-    let countryTextField: UITextField = {
+    private var countryTextField: UITextField = {
         let textField = UITextField.createTextFielf(withName: Name.country)
         return textField
     }()
 
-    let indexTextField: UITextField = {
+    private var indexTextField: UITextField = {
         let textField = UITextField.createTextFielf(withName: Name.index)
         return textField
     }()
 
-    let cityTextField: UITextField = {
+    private var cityTextField: UITextField = {
         let textField = UITextField.createTextFielf(withName: Name.city)
         return textField
     }()
 
-    let addressTextField: UITextField = {
+    private var addressTextField: UITextField = {
         let textField = UITextField.createTextFielf(withName: Name.address)
         return textField
     }()
 
-    let saveBotton: UIButton = {
+    private let saveBotton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(saveAddress), for: .touchUpInside)
         button.setTitle(Name.buttonSave, for: .normal)
@@ -72,7 +80,9 @@ class EditingAddressViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupLayuot()
+        setupAddress()
     }
+
 }
 
 private extension EditingAddressViewController {
@@ -85,7 +95,6 @@ private extension EditingAddressViewController {
         stackView.addArrangedSubview(indexTextField)
         stackView.addArrangedSubview(cityTextField)
         stackView.addArrangedSubview(addressTextField)
-
 
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: separatorView.customBackgroundView.leadingAnchor, constant: 16),
@@ -110,11 +119,41 @@ private extension EditingAddressViewController {
 
         ])
     }
+
+    func setupAddress() {
+        guard let selectedAddress = selectedAddress else { return }
+        countryTextField.text = selectedAddress.country
+        indexTextField.text = selectedAddress.index
+        cityTextField.text = selectedAddress.city
+        addressTextField.text = selectedAddress.address
+    }
 }
 
 private extension EditingAddressViewController {
+
+
     @objc
     func saveAddress() {
-        print("Кнопка сохранить адрес нажата")
+        guard
+            let country = countryTextField.text,
+            let index = indexTextField.text,
+            let city = cityTextField.text,
+            let address = addressTextField.text else { return }
+
+        let newAddress = Address(country: country, index: index, city: city, address: address)
+
+        guard let delegate = delegate else { return }
+
+        guard selectedAddress == nil else {
+            guard let selectedAddress = selectedAddress else { return }
+            delegate.shouldReplace(address: selectedAddress, withAddress: newAddress)
+
+            navigationController?.popViewController(animated: true)
+            return
+        }
+
+        delegate.shouldAdd(address: newAddress)
+
+        navigationController?.popViewController(animated: true)
     }
 }
