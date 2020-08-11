@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Informs the subscribing class to add or rewrite an Address in the address store
 protocol EditingAddressDelegate: class {
     func shouldReplace(address: Address, withAddress newAddress: Address)
     func shouldAdd(address: Address)
@@ -82,7 +83,6 @@ class EditingAddressViewController: UIViewController {
         setupLayuot()
         setupAddress()
     }
-
 }
 
 private extension EditingAddressViewController {
@@ -116,7 +116,6 @@ private extension EditingAddressViewController {
             saveBotton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             saveBotton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             saveBotton.heightAnchor.constraint(equalToConstant: 54)
-
         ])
     }
 
@@ -130,7 +129,6 @@ private extension EditingAddressViewController {
 }
 
 private extension EditingAddressViewController {
-
 
     @objc
     func saveAddress() {
@@ -155,7 +153,6 @@ private extension EditingAddressViewController {
         }
 
         delegate.shouldAdd(address: newAddress)
-
         navigationController?.popViewController(animated: true)
     }
 

@@ -42,5 +42,4 @@ final class AddressStorage {
             addresses[index] = newAddress
         }
     }
-
 }

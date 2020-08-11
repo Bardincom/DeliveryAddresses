@@ -21,7 +21,6 @@ final class AddressTableViewHeaderView: UITableViewHeaderFooterView {
         setupLayuot()
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

@@ -95,8 +95,8 @@
 		A2EE119D24DD579400FC8A62 /* DeliveryAddresses */ = {
 			isa = PBXGroup;
 			children = (
-				A276D88D24DF571000285B05 /* Storage */,
 				A2EE11B524DD5A3300FC8A62 /* Code */,
+				A276D88D24DF571000285B05 /* Storage */,
 				A2EE11B224DD584000FC8A62 /* Model */,
 				A2EE11B324DD585100FC8A62 /* View */,
 				A2EE11B424DD586200FC8A62 /* Controller */,

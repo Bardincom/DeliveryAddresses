@@ -31,7 +31,6 @@ class AddressViewController: UIViewController {
         super.viewWillAppear(animated)
         addresses = addressStorage.getAddress()
         addressTableView.reloadData()
-        print("\(addresses.count)")
     }
 }
 
@@ -54,7 +53,6 @@ private extension AddressViewController {
         editingAddressViewController.delegate = self
         navigationController?.pushViewController(editingAddressViewController, animated: true)
     }
-
 }
 
 extension AddressViewController: UITableViewDataSource {
@@ -72,7 +70,6 @@ extension AddressViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {        return Name.tableHader + "\(section + 1)"
     }
-
 }
 
 extension AddressViewController: UITableViewDelegate {
