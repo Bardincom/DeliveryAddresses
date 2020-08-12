@@ -8,9 +8,12 @@
 
 import UIKit
 
+let withConfiguration = UIImage.SymbolConfiguration(weight: .medium)
+
 enum Icon {
-    static let pencil = UIImage(systemName: "pencil")
-    static let plus = UIImage(systemName: "plus.circle")
+    static let pencil = UIImage(systemName: "pencil", withConfiguration: withConfiguration)
+    static let plus = UIImage(systemName: "plus.circle", withConfiguration: withConfiguration)
+    static let backButton = UIImage(systemName: "chevron.left", withConfiguration: withConfiguration)
 }
 
 enum Color {
@@ -25,5 +28,7 @@ enum Name {
     static let buttonSave = "Сохранить изменения"
     static let heading = "РЕДАКТИРОВАНИЕ АДРЕСА "
     static let tableHader = "АДРЕС ДОСТАВКИ "
+    static let deliveryAddresses = "Адреса доставки"
+    static let deliveryAddress = "Адрес доставки"
 }
 

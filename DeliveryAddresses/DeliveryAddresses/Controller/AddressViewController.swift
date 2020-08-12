@@ -19,7 +19,6 @@ class AddressViewController: UIViewController {
 
     let addressStorage = AddressStorage.shared
     var addresses = [Address]()
-    var index = IndexPath()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +39,12 @@ private extension AddressViewController {
                                      style: .plain,
                                      target: self,
                                      action: #selector(addAddress))
+        let backButton = UIBarButtonItem(image: Icon.backButton, style: .plain, target: self, action: nil)
+        backButton.tintColor = Color.yellow
         button.tintColor = Color.yellow
 
         navigationItem.rightBarButtonItems = .some([button])
+        navigationItem.leftBarButtonItem = .some(backButton)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
@@ -84,12 +86,12 @@ extension AddressViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        index = indexPath
         addressTableView.deselectRow(at: indexPath, animated: true)
         let address = addresses[indexPath.section]
         let editingAddressViewController = EditingAddressViewController()
         editingAddressViewController.delegate = self
         editingAddressViewController.selectedAddress = address
+        editingAddressViewController.section = "\(indexPath.section + 1)"
 
         navigationController?.pushViewController(editingAddressViewController, animated: true)
     }

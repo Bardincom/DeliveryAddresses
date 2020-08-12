@@ -18,6 +18,7 @@ class EditingAddressViewController: UIViewController {
 
     weak var delegate: EditingAddressDelegate!
     var selectedAddress: Address?
+    var section: String?
 
     private let separatorView: SeparatorView = {
         let view = SeparatorView()
@@ -31,7 +32,6 @@ class EditingAddressViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .darkGray
-        label.text = Name.heading
         return label
     }()
 
@@ -101,6 +101,7 @@ class EditingAddressViewController: UIViewController {
         view.backgroundColor = .white
         setupLayuot()
         setupAddress()
+        setupNavigationBar()
     }
 }
 
@@ -170,6 +171,19 @@ private extension EditingAddressViewController {
 }
 
 private extension EditingAddressViewController {
+
+    func setupNavigationBar() {
+        title = Name.deliveryAddress
+        label.text = "\(Name.heading)\(section ?? "")"
+        let backButton = UIBarButtonItem(image: Icon.backButton, style: .plain, target: self, action: #selector(popViewController))
+        backButton.tintColor = Color.yellow
+        navigationItem.leftBarButtonItem = .some(backButton)
+    }
+
+    @objc
+    func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
 
     @objc
     func saveAddress() {
