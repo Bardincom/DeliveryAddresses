@@ -9,11 +9,10 @@
 import UIKit
 
 extension UITextField {
-    class func createTextFielf(withName name: String) -> UITextField {
+    class func createTextField(withName name: String) -> UITextField {
         let textField: UITextField = {
             let textField = UITextField()
             textField.placeholder = name
-            textField.borderStyle = .roundedRect
             textField.layer.masksToBounds = true
             textField.autocorrectionType = .no
             textField.translatesAutoresizingMaskIntoConstraints = false
@@ -22,4 +21,3 @@ extension UITextField {
         return textField
     }
 }
-

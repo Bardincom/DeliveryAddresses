@@ -68,7 +68,8 @@ extension AddressViewController: UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {        return Name.tableHader + "\(section + 1)"
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        Name.tableHader + "\(section + 1)"
     }
 }
 

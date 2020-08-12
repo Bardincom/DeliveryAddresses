@@ -47,23 +47,43 @@ class EditingAddressViewController: UIViewController {
     }()
 
     private var countryTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: Name.country)
+        let textField = UITextField.createTextField(withName: Name.country)
         return textField
     }()
 
     private var indexTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: Name.index)
+        let textField = UITextField.createTextField(withName: Name.index)
         return textField
     }()
 
     private var cityTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: Name.city)
+        let textField = UITextField.createTextField(withName: Name.city)
         return textField
     }()
 
     private var addressTextField: UITextField = {
-        let textField = UITextField.createTextFielf(withName: Name.address)
+        let textField = UITextField.createTextField(withName: Name.address)
         return textField
+    }()
+
+    private var countryView: UIView = {
+        let view = UIView.createViewForTextView()
+        return view
+    }()
+
+    private var indexView: UIView = {
+        let view = UIView.createViewForTextView()
+        return view
+    }()
+
+    private var cityView: UIView = {
+        let view = UIView.createViewForTextView()
+        return view
+    }()
+
+    private var addressView: UIView = {
+        let view = UIView.createViewForTextView()
+        return view
     }()
 
     private let saveBotton: UIButton = {
@@ -72,7 +92,6 @@ class EditingAddressViewController: UIViewController {
         button.setTitle(Name.buttonSave, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.backgroundColor = Color.yellow?.cgColor
-        button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -90,18 +109,25 @@ private extension EditingAddressViewController {
         view.addSubview(separatorView)
         view.addSubview(stackView)
         view.addSubview(saveBotton)
+
         separatorView.customBackgroundView.addSubview(label)
-        stackView.addArrangedSubview(countryTextField)
-        stackView.addArrangedSubview(indexTextField)
-        stackView.addArrangedSubview(cityTextField)
-        stackView.addArrangedSubview(addressTextField)
+
+        countryView.addSubview(countryTextField)
+        indexView.addSubview(indexTextField)
+        cityView.addSubview(cityTextField)
+        addressView.addSubview(addressTextField)
+
+        stackView.addArrangedSubview(countryView)
+        stackView.addArrangedSubview(indexView)
+        stackView.addArrangedSubview(cityView)
+        stackView.addArrangedSubview(addressView)
 
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: separatorView.customBackgroundView.leadingAnchor, constant: 16),
             label.bottomAnchor.constraint(equalTo: separatorView.customBackgroundView.bottomAnchor),
             separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            separatorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            separatorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 123),
 
             stackView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -111,6 +137,21 @@ private extension EditingAddressViewController {
             indexTextField.heightAnchor.constraint(equalToConstant: 54),
             cityTextField.heightAnchor.constraint(equalToConstant: 54),
             addressTextField.heightAnchor.constraint(equalToConstant: 54),
+
+            countryTextField.leadingAnchor.constraint(equalTo: countryView.leadingAnchor, constant: 16),
+            indexTextField.leadingAnchor.constraint(equalTo: indexView.leadingAnchor, constant: 16),
+            cityTextField.leadingAnchor.constraint(equalTo: cityView.leadingAnchor, constant: 16),
+            addressTextField.leadingAnchor.constraint(equalTo: addressView.leadingAnchor, constant: 16),
+
+            countryTextField.trailingAnchor.constraint(equalTo: countryView.trailingAnchor),
+            indexTextField.trailingAnchor.constraint(equalTo: indexView.trailingAnchor),
+            cityTextField.trailingAnchor.constraint(equalTo: cityView.trailingAnchor),
+            addressTextField.trailingAnchor.constraint(equalTo: addressView.trailingAnchor),
+
+            countryView.heightAnchor.constraint(equalToConstant: 54),
+            indexView.heightAnchor.constraint(equalToConstant: 54),
+            cityView.heightAnchor.constraint(equalToConstant: 54),
+            addressView.heightAnchor.constraint(equalToConstant: 54),
 
             saveBotton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 34),
             saveBotton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -137,8 +178,8 @@ private extension EditingAddressViewController {
             let index = indexTextField.text, !index.isEmpty,
             let city = cityTextField.text, !city.isEmpty,
             let address = addressTextField.text, !address.isEmpty else {
-                alert()
-                return }
+            alert()
+            return }
 
         let newAddress = Address(country: country, index: index, city: city, address: address)
 
@@ -157,7 +198,9 @@ private extension EditingAddressViewController {
     }
 
     func alert() {
-        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ошибка",
+                                      message: "Заполните все поля",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }

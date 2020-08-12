@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A26CF7CB24E4716C00E66D15 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CF7CA24E4716C00E66D15 /* UIView+Extension.swift */; };
 		A276D88324DE669900285B05 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A276D88224DE669900285B05 /* SeparatorView.swift */; };
 		A276D88624DE6BE500285B05 /* EditingAddressDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A276D88424DE6BE500285B05 /* EditingAddressDelegate.swift */; };
 		A276D88A24DEFCDE00285B05 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A276D88924DEFCDE00285B05 /* UITextField+Extension.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A26CF7CA24E4716C00E66D15 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A276D88224DE669900285B05 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		A276D88424DE6BE500285B05 /* EditingAddressDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingAddressDelegate.swift; sourceTree = "<group>"; };
 		A276D88924DEFCDE00285B05 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				A2EE11C024DD6A5300FC8A62 /* UITableView+Extension.swift */,
 				A276D88924DEFCDE00285B05 /* UITextField+Extension.swift */,
+				A26CF7CA24E4716C00E66D15 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2EE119F24DD579400FC8A62 /* AppDelegate.swift in Sources */,
+				A26CF7CB24E4716C00E66D15 /* UIView+Extension.swift in Sources */,
 				A2EE11A124DD579400FC8A62 /* SceneDelegate.swift in Sources */,
 				A276D88324DE669900285B05 /* SeparatorView.swift in Sources */,
 				A2EE11C124DD6A5300FC8A62 /* UITableView+Extension.swift in Sources */,
