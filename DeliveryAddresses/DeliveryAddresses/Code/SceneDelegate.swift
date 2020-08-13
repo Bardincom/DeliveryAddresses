@@ -24,8 +24,8 @@ private extension SceneDelegate {
   func assembly(_ windowScene: UIWindowScene ) {
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-    let viewController = ViewController()
-    viewController.title = "Адрес доставки"
+    let viewController = AddressViewController()
+    viewController.title = Name.deliveryAddresses
     let navigationViewController = UINavigationController(rootViewController: viewController)
     window?.rootViewController = navigationViewController
 
