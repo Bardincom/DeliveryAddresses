@@ -16,7 +16,7 @@ protocol EditingAddressDelegate: class {
 
 class EditingAddressViewController: UIViewController {
 
-    weak var delegate: EditingAddressDelegate!
+    weak var delegate: EditingAddressDelegate?
     var selectedAddress: Address?
     var section: String?
 
